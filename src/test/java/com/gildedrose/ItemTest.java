@@ -1,7 +1,8 @@
 package com.gildedrose;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +10,7 @@ public class ItemTest {
 
     private Item item;
 
-    @Before
+    @BeforeEach
     public void Setup(){
         item = new Item("Aged Brie", 10, 50);
     }
