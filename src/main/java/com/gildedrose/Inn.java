@@ -28,6 +28,8 @@ public class Inn {
             case "Aged Brie":
                 increaseQuality(item, 1, 2 );
                 break;
+            case "Sulfuras, Hand of Ragnaros":
+                break;
             default:
 
                 break;

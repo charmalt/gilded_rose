@@ -49,7 +49,39 @@ public class InnTest {
 
     }
 
+    @Nested
+    class Sulfuras{
 
+        private Item[] items;
+
+        @BeforeEach
+        void Setup(){
+            items = new Item[]{
+                    new Item("Sulfuras, Hand of Ragnaros", 2, 80),
+                    new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+                    new Item("Sulfuras, Hand of Ragnaros", -1, 50)
+            };
+            app = new Inn(items);
+            app.updateQuality();
+        }
+
+        @Test
+        void QualityNeverChanges(){
+            app.updateQuality();
+            assertEquals(80, items[0].quality);
+            assertEquals(80, items[1].quality);
+            assertEquals(50, items[2].quality);
+        }
+
+        @Test
+        void SellInNeverChanges(){
+            app.updateQuality();
+            assertEquals(2, items[0].sellIn);
+            assertEquals(0, items[1].sellIn);
+            assertEquals(-1, items[2].sellIn);
+        }
+
+    }
 
 
 }
