@@ -155,7 +155,8 @@ class GildedRoseTest {
                     new Item("+5 Dexterity Vest", 10, 20),
                     new Item("Elixir of the Mongoose", 5, 53),
                     new Item("Elixir of the Mongoose", 0, 20),
-                    new Item("Elixir of the Mongoose", 20, 1)
+                    new Item("Elixir of the Mongoose", 20, 1),
+                    new Item("Elixir of the Mongoose", -1, 5)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -181,9 +182,15 @@ class GildedRoseTest {
 
         @Test
         @DisplayName("QualityIsNeverNegative")
-        void QualityIncrease(){
+        void QualityMinimum(){
             app.updateQuality();
             assertEquals(0, items[3].quality);
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesBy2SellInLessThan0")
+        void QualityDecrease3(){
+            assertEquals(3, items[4].quality);
         }
 
     }
