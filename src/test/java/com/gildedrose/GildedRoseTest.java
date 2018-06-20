@@ -212,7 +212,9 @@ class GildedRoseTest {
 
             items = new Item[]{
                     new Item("Conjured Mana Cake", 3, 6),
-                    new Item("Conjured Mana Cake", 3, 0)
+                    new Item("Conjured Mana Cake", 3, 0),
+                    new Item("Conjured Mana Cake", -1, 6),
+                    new Item("Conjured Mana Cake", -1, 0)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -225,15 +227,27 @@ class GildedRoseTest {
         }
 
         @Test
+        @DisplayName("QualityDecreasesBy4SellinLessThan0")
+        void QualityDecrease2(){
+            assertEquals(3, items[2].quality);
+        }
+
+        @Test
         @DisplayName("SellinDecreasesBy1EachDay")
         void SellInDecrease(){
-            assertEquals(3, items[0].sellIn);
+            assertEquals(2, items[0].sellIn);
         }
 
         @Test
         @DisplayName("QualityMinimum")
         void QualityMinimum(){
             assertEquals(0, items[1].quality);
+        }
+
+        @Test
+        @DisplayName("QualityMinimumSellInLessThan0")
+        void QualityMinimum2(){
+            assertEquals(0, items[3].quality);
         }
 
     }
