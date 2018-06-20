@@ -240,7 +240,7 @@ class GildedRoseTest {
         @Test
         @DisplayName("QualityDecreasesBy4SellinLessThan0")
         void QualityDecrease2(){
-            assertEquals(3, items[2].quality);
+            assertEquals(2, items[2].quality);
         }
 
         @Test
