@@ -55,7 +55,8 @@ class GildedRoseTest {
         void Setup(){
             items = new Item[]{
                     new Item("Sulfuras, Hand of Ragnaros", 2, 80),
-                    new Item("Sulfuras, Hand of Ragnaros", 0, 80)
+                    new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+                    new Item("Sulfuras, Hand of Ragnaros", -1, 80)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -73,6 +74,7 @@ class GildedRoseTest {
             app.updateQuality();
             assertEquals(2, items[0].sellIn);
             assertEquals(0, items[1].sellIn);
+            assertEquals(-1, items[2].sellIn);
         }
 
     }
