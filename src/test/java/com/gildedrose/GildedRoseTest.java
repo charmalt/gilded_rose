@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
 
-public class GildedRoseTest {
+class GildedRoseTest {
 
     private GildedRose app;
 
@@ -15,7 +15,7 @@ public class GildedRoseTest {
     class CheckTexttestFixture{
 
         @BeforeEach
-        public void Setup(){
+        void Setup(){
             Item[] items = new Item[] {
                     new Item("+5 Dexterity Vest", 10, 20), //
                     new Item("Aged Brie", 2, 0), //
@@ -32,63 +32,63 @@ public class GildedRoseTest {
         }
 
         @Test
-        public void DexterityVestUpdateBehaviour() {
+        void DexterityVestUpdateBehaviour() {
             assertEquals("+5 Dexterity Vest", app.items[0].name);
             assertEquals(9, app.items[0].sellIn);
             assertEquals(19, app.items[0].quality);
         }
 
         @Test
-        public void agedBrieUpdateBehaviour(){
+        void agedBrieUpdateBehaviour(){
             assertEquals("Aged Brie", app.items[1].name);
             assertEquals(1, app.items[1].sellIn);
             assertEquals(1, app.items[1].quality);
         }
 
         @Test
-        public void ElixirUpdateBehaviour(){
+        void ElixirUpdateBehaviour(){
             assertEquals("Elixir of the Mongoose", app.items[2].name);
             assertEquals(4, app.items[2].sellIn);
             assertEquals(6, app.items[2].quality);
         }
 
         @Test
-        public void SulfurasUpdateBehaviour(){
+        void SulfurasUpdateBehaviour(){
             assertEquals("Sulfuras, Hand of Ragnaros", app.items[3].name);
             assertEquals(0, app.items[3].sellIn);
             assertEquals(80, app.items[3].quality);
         }
 
         @Test
-        public void SulfurasUpdateBehaviour2ndCheck(){
+        void SulfurasUpdateBehaviour2ndCheck(){
             assertEquals("Sulfuras, Hand of Ragnaros", app.items[4].name);
             assertEquals(-1, app.items[4].sellIn);
             assertEquals(80, app.items[4].quality);
         }
 
         @Test
-        public void BackStagePassUpdateBehaviour(){
+        void BackStagePassUpdateBehaviour(){
             assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[5].name);
             assertEquals(14, app.items[5].sellIn);
             assertEquals(21, app.items[5].quality);
         }
 
         @Test
-        public void BackStagePassUpdateBehaviour2ndCheck(){
+        void BackStagePassUpdateBehaviour2ndCheck(){
             assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[6].name);
             assertEquals(9, app.items[6].sellIn);
             assertEquals(50, app.items[6].quality);
         }
 
         @Test
-        public void BackStagePassUpdateBehaviour3rdCheck(){
+        void BackStagePassUpdateBehaviour3rdCheck(){
             assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[7].name);
             assertEquals(4, app.items[7].sellIn);
             assertEquals(50, app.items[7].quality);
         }
 
         @Test
-        public void ConjuredMana(){
+        void ConjuredMana(){
             assertEquals("Conjured Mana Cake", app.items[8].name);
             assertEquals(2, app.items[8].sellIn);
             assertEquals(4, app.items[8].quality);
@@ -102,7 +102,7 @@ public class GildedRoseTest {
         private Item[] items;
 
         @BeforeEach
-        public void Setup(){
+        void Setup(){
             items = new Item[]{
                     new Item("Aged Brie", 2, 0), //
                     new Item("Aged Brie", 2, 50)
@@ -112,13 +112,13 @@ public class GildedRoseTest {
         }
 
         @Test
-        public void QualityIncreasesBy1EachDay(){
+        void QualityIncreasesBy1EachDay(){
             app.updateQuality();
             assertEquals(2, items[0].quality);
         }
 
         @Test
-        public void MaximumQualityIs50(){
+        void MaximumQualityIs50(){
             app.updateQuality();
             assertEquals(50, items[1].quality);
         }
@@ -131,7 +131,7 @@ public class GildedRoseTest {
         private Item[] items;
 
         @BeforeEach
-        public void Setup(){
+        void Setup(){
             items = new Item[]{
                     new Item("Sulfuras, Hand of Ragnaros", 2, 80)
             };
@@ -140,13 +140,13 @@ public class GildedRoseTest {
         }
 
         @Test
-        public void QualityNeverChanges(){
+        void QualityNeverChanges(){
             app.updateQuality();
             assertEquals(80, items[0].quality);
         }
 
         @Test
-        public void SellInNeverChanges(){
+        void SellInNeverChanges(){
             app.updateQuality();
             assertEquals(2, items[0].sellIn);
         }
@@ -159,7 +159,7 @@ public class GildedRoseTest {
         private Item[] items;
 
         @BeforeEach
-        public void Setup(){
+        void Setup(){
 
             items = new Item[]{
                     new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
@@ -174,38 +174,89 @@ public class GildedRoseTest {
 
         @Test
         @DisplayName("QualityIncreasesBy1SellInGreaterThan10")
-        public void QualityChange(){
+        void QualityChange(){
             assertEquals(21, items[0].quality);
         }
 
         @Test
         @DisplayName("QualityIncreasesBy2SellInLessThan10GreaterThan5")
-        public void QualityChange2(){
+        void QualityChange2(){
             assertEquals(22, items[1].quality);
         }
 
         @Test
         @DisplayName("QualityIncreasesBy3SellInLessThan5GreaterThan0")
-        public void QualityChange3(){
+        void QualityChange3(){
             assertEquals(23, items[2].quality);
         }
 
         @Test
         @DisplayName("QualityIs0SellIn0")
-        public void QualityChange4(){
+        void QualityChange4(){
             assertEquals(0, items[3].quality);
         }
 
         @Test
         @DisplayName("QualityIs0SellInLessThan0")
-        public void QualityChange5(){
+        void QualityChange5(){
             assertEquals(0, items[4].quality);
         }
 
         @Test
         @DisplayName("SellInDecreasesEachDay")
-        public void SellInChange(){
+        void SellInChange(){
             assertEquals(14, items[0].sellIn);
+        }
+
+    }
+
+    @Nested
+    class RegularItems {
+
+        private Item[] items;
+
+        @BeforeEach
+        void Setup() {
+
+            items = new Item[]{
+                    new Item("+5 Dexterity Vest", 10, 20),
+                    new Item("Elixir of the Mongoose", 5, 53),
+                    new Item("Elixir of the Mongoose", 0, 20),
+                    new Item("Elixir of the Mongoose", 20, 1)
+            };
+            app = new GildedRose(items);
+            app.updateQuality();
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesBy1EachDay")
+        void QualityDecrease(){
+            assertEquals(19, items[0].quality);
+        }
+
+        @Test
+        @DisplayName("SellInDecreasesBy1EachDay")
+        void SellInDecrease(){
+            assertEquals(9, items[0].sellIn);
+        }
+
+        @Test
+        @DisplayName("QualityNeverExceeds50")
+        void QualityMaximum(){
+            assertEquals(50, items[1].quality);
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesTwiceAsFastAfterSellInPasses")
+        void QualityDecrease2(){
+            assertEquals(18, items[2].quality);
+        }
+
+        @Test
+        @DisplayName("QualityIsNeverNegative")
+        void QualityIncrease(){
+            app.updateQuality();
+            assertEquals(0, items[3].quality);
         }
 
     }
