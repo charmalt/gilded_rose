@@ -15,6 +15,21 @@ public class ItemTest {
     }
 
     @Test
+    public void HasNameAttribute(){
+        assertEquals("Aged Brie", item.name);
+    }
+
+    @Test
+    public void HasSellinAttribute(){
+        assertEquals(10, item.sellIn);
+    }
+
+    @Test
+    public void HasQualityAttribute(){
+        assertEquals(50, item.quality);
+    }
+
+    @Test
     public void ReturnsCorrectString() {
         String expectedString = "Aged Brie, 10, 50";
         assertEquals(expectedString, item.toString());
