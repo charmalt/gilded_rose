@@ -96,6 +96,7 @@ class GildedRoseTest {
                     new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20),
                     new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
                     new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -142,6 +143,7 @@ class GildedRoseTest {
         void QualityMaximum(){
             assertEquals(50, items[5].quality);
             assertEquals(50, items[6].quality);
+            assertEquals(50, items[7].quality);
         }
 
     }
