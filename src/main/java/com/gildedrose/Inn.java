@@ -39,7 +39,6 @@ public class Inn {
                 break;
             default:
                 changeValue(item, getDelta(item, -1, -2));
-                break;
         }
 
     }
