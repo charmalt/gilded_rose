@@ -241,12 +241,6 @@ class GildedRoseTest {
         }
 
         @Test
-        @DisplayName("QualityNeverExceeds50")
-        void QualityMaximum(){
-            assertEquals(50, items[1].quality);
-        }
-
-        @Test
         @DisplayName("QualityDecreasesTwiceAsFastAfterSellInPasses")
         void QualityDecrease2(){
             assertEquals(18, items[2].quality);
