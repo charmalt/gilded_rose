@@ -96,7 +96,8 @@ class GildedRoseTest {
                     new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20),
                     new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
                     new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50)
+                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50),
+                    new Item("Backstage passes to a TAFKAL80ETC concert", -1, 50),
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -130,6 +131,7 @@ class GildedRoseTest {
         @DisplayName("QualityIs0SellInLessThan0")
         void QualityChange5(){
             assertEquals(0, items[4].quality);
+            assertEquals(0, items[8].quality);
         }
 
         @Test
@@ -162,7 +164,8 @@ class GildedRoseTest {
                     new Item("Elixir of the Mongoose", 0, 20),
                     new Item("Elixir of the Mongoose", 20, 1),
                     new Item("Elixir of the Mongoose", -1, 5),
-                    new Item("Elixir of the Mongoose", -1, 0)
+                    new Item("Elixir of the Mongoose", -1, 0),
+                    new Item("Elixir of the Mongoose", -1, 50)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -197,6 +200,7 @@ class GildedRoseTest {
         @DisplayName("QualityDecreasesBy2SellInLessThan0")
         void QualityDecrease3(){
             assertEquals(3, items[4].quality);
+            assertEquals(48, items[6].quality);
         }
 
         @Test
@@ -219,7 +223,7 @@ class GildedRoseTest {
                     new Item("Conjured Mana Cake", 3, 6),
                     new Item("Conjured Mana Cake", 3, 0),
                     new Item("Conjured Mana Cake", -1, 6),
-                    new Item("Conjured Mana Cake", -1, 0)
+                    new Item("Conjured Mana Cake", -1, 0),
             };
             app = new GildedRose(items);
             app.updateQuality();
