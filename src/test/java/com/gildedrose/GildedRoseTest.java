@@ -255,4 +255,40 @@ class GildedRoseTest {
 
     }
 
+    @Nested
+    class Conjured {
+
+        private Item[] items;
+
+        @BeforeEach
+        void Setup() {
+
+            items = new Item[]{
+                    new Item("Conjured Mana Cake", 3, 6),
+                    new Item("Conjured Mana Cake", 3, 0)
+            };
+            app = new GildedRose(items);
+            app.updateQuality();
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesTwiceAsFast")
+        void QualityDecrease(){
+            assertEquals(4, items[0].quality);
+        }
+
+        @Test
+        @DisplayName("SellinDecreasesBy1EachDay")
+        void SellInDecrease(){
+            assertEquals(3, items[0].sellIn);
+        }
+
+        @Test
+        @DisplayName("QualityMinimum")
+        void QualityMinimum(){
+            assertEquals(0, items[1].quality);
+        }
+
+    }
+
 }
