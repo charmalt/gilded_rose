@@ -3,6 +3,7 @@ package com.gildedrose;
 import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
 
@@ -124,5 +125,89 @@ public class GildedRoseTest {
 
     }
 
+    @Nested
+    class Sulfuras{
+
+        private Item[] items;
+
+        @BeforeEach
+        public void Setup(){
+            items = new Item[]{
+                    new Item("Sulfuras, Hand of Ragnaros", 2, 80)
+            };
+            app = new GildedRose(items);
+            app.updateQuality();
+        }
+
+        @Test
+        public void QualityNeverChanges(){
+            app.updateQuality();
+            assertEquals(80, items[0].quality);
+        }
+
+        @Test
+        public void SellInNeverChanges(){
+            app.updateQuality();
+            assertEquals(2, items[0].sellIn);
+        }
+
+    }
+
+    @Nested
+    class BackStagePasses{
+
+        private Item[] items;
+
+        @BeforeEach
+        public void Setup(){
+
+            items = new Item[]{
+                    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
+                    new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20),
+                    new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20),
+                    new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20),
+            };
+            app = new GildedRose(items);
+            app.updateQuality();
+        }
+
+        @Test
+        @DisplayName("QualityIncreasesBy1SellInGreaterThan10")
+        public void QualityChange(){
+            assertEquals(21, items[0].quality);
+        }
+
+        @Test
+        @DisplayName("QualityIncreasesBy2SellInLessThan10GreaterThan5")
+        public void QualityChange2(){
+            assertEquals(22, items[1].quality);
+        }
+
+        @Test
+        @DisplayName("QualityIncreasesBy3SellInLessThan5GreaterThan0")
+        public void QualityChange3(){
+            assertEquals(23, items[2].quality);
+        }
+
+        @Test
+        @DisplayName("QualityIs0SellIn0")
+        public void QualityChange4(){
+            assertEquals(0, items[3].quality);
+        }
+
+        @Test
+        @DisplayName("QualityIs0SellInLessThan0")
+        public void QualityChange5(){
+            assertEquals(0, items[4].quality);
+        }
+
+        @Test
+        @DisplayName("SellInDecreasesEachDay")
+        public void SellInChange(){
+            assertEquals(14, items[0].sellIn);
+        }
+
+    }
 
 }
