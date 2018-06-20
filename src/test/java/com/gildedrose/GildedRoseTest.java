@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 
 public class GildedRoseTest {
@@ -92,6 +91,35 @@ public class GildedRoseTest {
             assertEquals("Conjured Mana Cake", app.items[8].name);
             assertEquals(2, app.items[8].sellIn);
             assertEquals(4, app.items[8].quality);
+        }
+
+    }
+
+    @Nested
+    class AgedBrie{
+
+        private Item[] items;
+
+        @BeforeEach
+        public void Setup(){
+            items = new Item[]{
+                    new Item("Aged Brie", 2, 0), //
+                    new Item("Aged Brie", 2, 50)
+            };
+            app = new GildedRose(items);
+            app.updateQuality();
+        }
+
+        @Test
+        public void QualityIncreasesBy1EachDay(){
+            app.updateQuality();
+            assertEquals(2, items[0].quality);
+        }
+
+        @Test
+        public void MaximumQualityIs50(){
+            app.updateQuality();
+            assertEquals(50, items[1].quality);
         }
 
     }
