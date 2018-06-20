@@ -20,7 +20,8 @@ class GildedRoseTest {
         void Setup(){
             items = new Item[]{
                     new Item("Aged Brie", 2, 0), //
-                    new Item("Aged Brie", 2, 50)
+                    new Item("Aged Brie", 2, 50),
+                    new Item("Aged Brie", -1, 20)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -30,6 +31,11 @@ class GildedRoseTest {
         void QualityIncreasesBy1EachDay(){
             app.updateQuality();
             assertEquals(2, items[0].quality);
+        }
+
+        @Test
+        void QualityIncreasesBy2SellInLessThan0(){
+            assertEquals(22, items[2].quality);
         }
 
         @Test
