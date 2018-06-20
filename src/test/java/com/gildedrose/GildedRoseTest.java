@@ -21,7 +21,8 @@ class GildedRoseTest {
             items = new Item[]{
                     new Item("Aged Brie", 2, 0), //
                     new Item("Aged Brie", 2, 50),
-                    new Item("Aged Brie", -1, 20)
+                    new Item("Aged Brie", -1, 20),
+                    new Item("Aged Brie", -1, 50)
             };
             app = new GildedRose(items);
             app.updateQuality();
@@ -42,6 +43,7 @@ class GildedRoseTest {
         void MaximumQualityIs50(){
             app.updateQuality();
             assertEquals(50, items[1].quality);
+            assertEquals(50, items[3].quality);
         }
 
     }
