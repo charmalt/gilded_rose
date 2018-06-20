@@ -19,11 +19,11 @@ public class Inn {
 
     }
 
-    void updateSellin(Item item){
+    private void updateSellin(Item item){
         item.sellIn = item.name.equals("Sulfuras, Hand of Ragnaros") ? item.sellIn : item.sellIn - 1 ;
     }
 
-    void updateItemQuality(Item item){
+    private void updateItemQuality(Item item){
 
         switch (item.name) {
             case "Aged Brie":
@@ -44,11 +44,11 @@ public class Inn {
 
     }
 
-    int getDelta(Item item, int AboveZeroSellIn, int BelowZeroSellIn){
+    private int getDelta(Item item, int AboveZeroSellIn, int BelowZeroSellIn){
         return item.sellIn >= 0 ? AboveZeroSellIn : BelowZeroSellIn;
     }
 
-    int getBackStageDelta(Item item){
+    private int getBackStageDelta(Item item){
 
         if (item.sellIn <= 0 ){
             return -item.quality;
@@ -64,7 +64,7 @@ public class Inn {
 
     }
 
-    void changeValue(Item item, int delta){
+    private void changeValue(Item item, int delta){
 
         if (delta < 0){
             item.quality = (item.quality < -delta)||(-delta == item.quality) ? MINIMUM_QUALITY : item.quality + delta ;
