@@ -32,11 +32,17 @@ public class Inn {
                 break;
             case "Sulfuras, Hand of Ragnaros":
                 break;
-            case"Backstage passes to a TAFKAL80ETC concert":
+            case "Backstage passes to a TAFKAL80ETC concert":
                 delta = getBackStageDelta(item);
                 increaseValue(item, delta);
+                break;
+            case "Conjured Mana Cake":
+                delta = getDelta(item, 2, 4);
+                decreaseValue(item, delta);
+                break;
             default:
-
+                delta = getDelta(item, 1, 2);
+                decreaseValue(item, delta);
                 break;
         }
 
@@ -74,6 +80,13 @@ public class Inn {
         }
         else if (item.quality < MAXIMUM_QUALITY){
             item.quality = (MAXIMUM_QUALITY - item.quality) >= delta ? item.quality + delta : MAXIMUM_QUALITY;
+        }
+    }
+
+    void decreaseValue(Item item, int delta){
+
+        if (item.quality > MINIMUM_QUALITY){
+            item.quality = item.quality >= delta ? item.quality - delta : MINIMUM_QUALITY;
         }
     }
 

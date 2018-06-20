@@ -154,6 +154,119 @@ public class InnTest {
 
     }
 
+    @Nested
+    class RegularItems {
+
+        private Item[] items;
+
+        @BeforeEach
+        void Setup() {
+
+            items = new Item[]{
+                    new Item("+5 Dexterity Vest", 10, 20),
+                    new Item("Elixir of the Mongoose", 5, 53),
+                    new Item("Elixir of the Mongoose", 0, 20),
+                    new Item("Elixir of the Mongoose", 20, 1),
+                    new Item("Elixir of the Mongoose", -1, 5),
+                    new Item("Elixir of the Mongoose", -1, 0),
+                    new Item("Elixir of the Mongoose", -1, 50)
+            };
+            app = new Inn(items);
+            app.updateQuality();
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesBy1EachDay")
+        void QualityDecrease(){
+            assertEquals(19, items[0].quality);
+        }
+
+        @Test
+        @DisplayName("SellInDecreasesBy1EachDay")
+        void SellInDecrease(){
+            assertEquals(9, items[0].sellIn);
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesTwiceAsFastAfterSellInPasses")
+        void QualityDecrease2(){
+            assertEquals(18, items[2].quality);
+        }
+
+        @Test
+        @DisplayName("QualityIsNeverNegative")
+        void QualityMinimum(){
+            app.updateQuality();
+            assertEquals(0, items[3].quality);
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesBy2SellInLessThan0")
+        void QualityDecrease3(){
+            assertEquals(3, items[4].quality);
+            assertEquals(48, items[6].quality);
+        }
+
+        @Test
+        @DisplayName("QualityStays0SellInLessThan0")
+        void QualityDecrease4(){
+            assertEquals(0, items[5].quality);
+        }
+
+    }
+
+    @Nested
+    class Conjured {
+
+        private Item[] items;
+
+        @BeforeEach
+        void Setup() {
+
+            items = new Item[]{
+                    new Item("Conjured Mana Cake", 3, 6),
+                    new Item("Conjured Mana Cake", 3, 0),
+                    new Item("Conjured Mana Cake", -1, 6),
+                    new Item("Conjured Mana Cake", -1, 0),
+            };
+            app = new Inn(items);
+            app.updateQuality();
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesTwiceAsFast")
+        void QualityDecrease(){
+            assertEquals(4, items[0].quality);
+        }
+
+        @Test
+        @DisplayName("QualityDecreasesBy4SellinLessThan0")
+        void QualityDecrease2(){
+            assertEquals(2, items[2].quality);
+        }
+
+        @Test
+        @DisplayName("SellinDecreasesBy1EachDay")
+        void SellInDecrease(){
+            assertEquals(2, items[0].sellIn);
+        }
+
+        @Test
+        @DisplayName("QualityMinimum")
+        void QualityMinimum(){
+            assertEquals(0, items[1].quality);
+        }
+
+        @Test
+        @DisplayName("QualityMinimumSellInLessThan0")
+        void QualityMinimum2(){
+            assertEquals(0, items[3].quality);
+        }
+
+    }
+
+
+
 
 
 }
