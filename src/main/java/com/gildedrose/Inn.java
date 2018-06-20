@@ -24,25 +24,21 @@ public class Inn {
     }
 
     void updateItemQuality(Item item){
-        int delta;
+
         switch (item.name) {
             case "Aged Brie":
-                delta = getDelta(item, 1, 2);
-                increaseValue(item, delta);
+                changeValue(item, getDelta(item, 1, 2));
                 break;
             case "Sulfuras, Hand of Ragnaros":
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                delta = getBackStageDelta(item);
-                increaseValue(item, delta);
+                changeValue(item, getBackStageDelta(item));
                 break;
             case "Conjured Mana Cake":
-                delta = getDelta(item, 2, 4);
-                decreaseValue(item, delta);
+                changeValue(item, getDelta(item, -2, -4));
                 break;
             default:
-                delta = getDelta(item, 1, 2);
-                decreaseValue(item, delta);
+                changeValue(item, getDelta(item, -1, -2));
                 break;
         }
 
@@ -57,37 +53,26 @@ public class Inn {
         if (item.sellIn <= 0 ){
             return -item.quality;
         }
-
         else if (item.quality < MAXIMUM_QUALITY) {
-            if (item.sellIn > 10) {
-               return 1;
-            } else if (item.sellIn > 5) {
-               return 2;
-            } else {
-               return 3;
-            }
+            if (item.sellIn > 10) { return 1; }
+            else if (item.sellIn > 5) { return 2; }
+            else { return 3; }
         }
         else {
-           return 0;
+            return 0;
         }
 
     }
 
-    void increaseValue(Item item, int delta){
+    void changeValue(Item item, int delta){
 
-        if (delta == -item.quality){
-            item.quality = 0;
+        if (delta < 0){
+            item.quality = (item.quality < -delta)||(-delta == item.quality) ? MINIMUM_QUALITY : item.quality + delta ;
         }
         else if (item.quality < MAXIMUM_QUALITY){
             item.quality = (MAXIMUM_QUALITY - item.quality) >= delta ? item.quality + delta : MAXIMUM_QUALITY;
         }
     }
 
-    void decreaseValue(Item item, int delta){
-
-        if (item.quality > MINIMUM_QUALITY){
-            item.quality = item.quality >= delta ? item.quality - delta : MINIMUM_QUALITY;
-        }
-    }
 
 }
