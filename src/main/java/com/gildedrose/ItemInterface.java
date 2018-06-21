@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-interface UpdateInterface {
+interface ItemInterface {
 
     void updateItemQuality();
 

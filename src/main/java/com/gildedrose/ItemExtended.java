@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-abstract class ItemExtended extends Item implements UpdateInterface{
+abstract class ItemExtended extends Item implements ItemInterface {
 
     private static final int MAXIMUM_QUALITY = 50;
     private static final int MINIMUM_QUALITY = 0;
