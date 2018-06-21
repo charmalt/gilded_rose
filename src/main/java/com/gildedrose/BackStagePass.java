@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackStagePass extends ItemExtended {
+class BackStagePass extends ItemExtended {
 
     private static final int MAXIMUM_QUALITY = 50;
 
