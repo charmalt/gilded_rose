@@ -11,20 +11,18 @@ import static org.junit.Assert.assertEquals;
 public class InnTest {
 
     private Inn app;
-    private Item[] items;
+    private ItemExtended[] items;
 
     @Nested
     class AgedBrie{
 
-        private Item[] items;
-
         @BeforeEach
         void Setup(){
-            items = new Item[]{
-                    new Item("Aged Brie", 2, 0), //
-                    new Item("Aged Brie", 2, 50),
-                    new Item("Aged Brie", -1, 20),
-                    new Item("Aged Brie", -1, 50)
+            items = new ItemExtended[]{
+                    new RegularItem("Aged Brie", 2, 0), //
+                    new RegularItem("Aged Brie", 2, 50),
+                    new RegularItem("Aged Brie", -1, 20),
+                    new RegularItem("Aged Brie", -1, 50)
             };
             app = new Inn(items);
             app.updateQuality();
@@ -51,16 +49,14 @@ public class InnTest {
     }
 
     @Nested
-    class Sulfuras{
-
-        private Item[] items;
+    class SulfurasTest{
 
         @BeforeEach
         void Setup(){
-            items = new Item[]{
-                    new Item("Sulfuras, Hand of Ragnaros", 2, 80),
-                    new Item("Sulfuras, Hand of Ragnaros", 0, 80),
-                    new Item("Sulfuras, Hand of Ragnaros", -1, 50)
+            items = new ItemExtended[]{
+                    new Sulfuras("Sulfuras, Hand of Ragnaros", 2, 80),
+                    new Sulfuras("Sulfuras, Hand of Ragnaros", 0, 80),
+                    new Sulfuras("Sulfuras, Hand of Ragnaros", -1, 50)
             };
             app = new Inn(items);
             app.updateQuality();
@@ -87,21 +83,19 @@ public class InnTest {
     @Nested
     class BackStagePasses{
 
-        private Item[] items;
-
         @BeforeEach
         void Setup(){
 
-            items = new Item[]{
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50),
-                    new Item("Backstage passes to a TAFKAL80ETC concert", -1, 50),
+            items = new ItemExtended[]{
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 10, 20),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 5, 20),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 0, 20),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", -1, 20),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", 10, 50),
+                    new BackStagePass("Backstage passes to a TAFKAL80ETC concert", -1, 50),
             };
             app = new Inn(items);
             app.updateQuality();
@@ -157,19 +151,17 @@ public class InnTest {
     @Nested
     class RegularItems {
 
-        private Item[] items;
-
         @BeforeEach
         void Setup() {
 
-            items = new Item[]{
-                    new Item("+5 Dexterity Vest", 10, 20),
-                    new Item("Elixir of the Mongoose", 5, 53),
-                    new Item("Elixir of the Mongoose", 0, 20),
-                    new Item("Elixir of the Mongoose", 20, 1),
-                    new Item("Elixir of the Mongoose", -1, 5),
-                    new Item("Elixir of the Mongoose", -1, 0),
-                    new Item("Elixir of the Mongoose", -1, 50)
+            items = new ItemExtended[]{
+                    new RegularItem("+5 Dexterity Vest", 10, 20),
+                    new RegularItem("Elixir of the Mongoose", 5, 53),
+                    new RegularItem("Elixir of the Mongoose", 0, 20),
+                    new RegularItem("Elixir of the Mongoose", 20, 1),
+                    new RegularItem("Elixir of the Mongoose", -1, 5),
+                    new RegularItem("Elixir of the Mongoose", -1, 0),
+                    new RegularItem("Elixir of the Mongoose", -1, 50)
             };
             app = new Inn(items);
             app.updateQuality();
@@ -218,16 +210,15 @@ public class InnTest {
     @Nested
     class Conjured {
 
-        private Item[] items;
 
         @BeforeEach
         void Setup() {
 
-            items = new Item[]{
-                    new Item("Conjured Mana Cake", 3, 6),
-                    new Item("Conjured Mana Cake", 3, 0),
-                    new Item("Conjured Mana Cake", -1, 6),
-                    new Item("Conjured Mana Cake", -1, 0),
+            items = new ItemExtended[]{
+                    new RegularItem("Conjured Mana Cake", 3, 6),
+                    new RegularItem("Conjured Mana Cake", 3, 0),
+                    new RegularItem("Conjured Mana Cake", -1, 6),
+                    new RegularItem("Conjured Mana Cake", -1, 0),
             };
             app = new Inn(items);
             app.updateQuality();
