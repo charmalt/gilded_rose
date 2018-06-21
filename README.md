@@ -32,7 +32,7 @@ Choose legacy code (translated by Emily Bache) in the language of your choice. T
 ## Developer Instructions 
 
 - Fork or clone repository. 
-- Run TexttestFixture File to for an example output. 
+- Run TexttestFixture File for an example output. 
 
 ## Tests
 
